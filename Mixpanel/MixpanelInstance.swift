@@ -297,11 +297,6 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
         let notificationCenter = NotificationCenter.default
         trackIntegration()
         #if os(iOS)
-            setCurrentRadio()
-            notificationCenter.addObserver(self,
-                                           selector: #selector(setCurrentRadio),
-                                           name: .CTRadioAccessTechnologyDidChange,
-                                           object: nil)
             #if DECIDE
             notificationCenter.addObserver(self,
                                            selector: #selector(executeTweaks),
@@ -541,13 +536,6 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
             DispatchQueue.main.async {
                 MixpanelInstance.sharedUIApplication()?.isNetworkActivityIndicatorVisible = on
             }
-        }
-    }
-
-    @objc func setCurrentRadio() {
-        let currentRadio = AutomaticProperties.getCurrentRadio()
-        serialQueue.async() {
-            AutomaticProperties.properties["$radio"] = currentRadio
         }
     }
 
