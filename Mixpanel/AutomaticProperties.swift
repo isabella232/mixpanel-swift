@@ -24,18 +24,14 @@ class AutomaticProperties {
     static var properties: InternalProperties = {
         objc_sync_enter(AutomaticProperties.self); defer { objc_sync_exit(AutomaticProperties.self) }
         var p = InternalProperties()
-
-        p["$os_version"]        = UIDevice.current.systemVersion
-
+        // No data
         return p
     }()
 
     static var peopleProperties: InternalProperties = {
         objc_sync_enter(AutomaticProperties.self); defer { objc_sync_exit(AutomaticProperties.self) }
         var p = InternalProperties()
-
-        p["$ios_version"]       = UIDevice.current.systemVersion
-
+        // No data
         return p
     }()
 }
